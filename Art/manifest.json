@@ -1,0 +1,9 @@
+{
+    "name": "GarageDoorFix",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/EliteMasterEric/GarageDoorFix",
+    "description": "Fixes a bug that made Hygroderes unable to be tamed with Boomboxes.",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2100"
+    ]
+}

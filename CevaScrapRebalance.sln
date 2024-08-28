@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarageDoorFix", "GarageDoorFix\GarageDoorFix.csproj", "{04FD6926-5D80-4206-8FDF-1ACC140E9DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CevaScrapRebalance", "CevaScrapRebalance\CevaScrapRebalance.csproj", "{04FD6926-5D80-4206-8FDF-1ACC140E9DD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

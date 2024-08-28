@@ -7,7 +7,7 @@
 			"command": "dotnet",
 			"args": [
 				"build",
-				"${workspaceFolder}/GarageDoorFix.sln",
+				"${workspaceFolder}/CevaScrapRebalance.sln",
 				"-c Release",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary",

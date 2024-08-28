@@ -3,14 +3,14 @@
 using HarmonyLib;
 using BepInEx.Logging;
 
-namespace GarageDoorFix
+namespace CevaScrapRebalance
 {
     public static class PluginInfo
     {
-        public const string PLUGIN_ID = "GarageDoorFix";
-        public const string PLUGIN_NAME = "GarageDoorFix";
+        public const string PLUGIN_ID = "cevascraprebalance";
+        public const string PLUGIN_NAME = "CevaScrapRebalance";
         public const string PLUGIN_VERSION = "1.0.0";
-        public const string PLUGIN_GUID = "com.elitemastereric.garagedoorfix";
+        public const string PLUGIN_GUID = "com.elitemastereric.cevascraprebalance";
     }
 
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
@@ -19,8 +19,8 @@ namespace GarageDoorFix
         public static Plugin Instance { get; private set; }
 
         public ManualLogSource PluginLogger;
-
-        public PluginConfig PluginConfig;
+        
+        internal PluginConfig PluginConfig;
 
         private void Awake()
         {

@@ -21,7 +21,7 @@ namespace CevaScrapRebalance
             Plugin.Instance.PluginLogger.LogDebug("Item " + scrapKey + " has a scrap config, applying custom values...");
 
             var minValue = CalculateScrapMinValue(scrapKey);
-            if (minValue > 0)
+            if (minValue >= 0)
             {
                 Plugin.Instance.PluginLogger.LogDebug("  - Min Value: " + minValue);
                 itemProperties.minValue = minValue;
@@ -32,7 +32,7 @@ namespace CevaScrapRebalance
             }
 
             var maxValue = CalculateScrapMaxValue(scrapKey);
-            if (minValue > 0)
+            if (maxValue >= 0)
             {
                 Plugin.Instance.PluginLogger.LogDebug("  - Max Value: " + maxValue);
                 itemProperties.maxValue = maxValue;
@@ -44,7 +44,7 @@ namespace CevaScrapRebalance
 
             var displayWeight = CalculateScrapWeight(scrapKey);
             var weight = CalculateScrapInternalWeight(scrapKey);
-            if (displayWeight > 0)
+            if (displayWeight >= 0)
             {
                 Plugin.Instance.PluginLogger.LogDebug("  - Weight: " + displayWeight + " (" + weight + ")");
                 itemProperties.weight = weight;
@@ -55,7 +55,7 @@ namespace CevaScrapRebalance
             }
 
             var rarity = CalculateScrapRarity(scrapKey, sceneName);
-            if (rarity != -1)
+            if (rarity >= 0)
             {
                 Plugin.Instance.PluginLogger.LogDebug("  - Rarity (" + sceneName + "): " + rarity);
                 item.rarity = rarity;
@@ -74,10 +74,41 @@ namespace CevaScrapRebalance
         {
             ScrapConfig apparatusConfig = Plugin.Instance.PluginConfig.FetchApparatusConfig();
 
-            var scrapValue = RoundManager.Instance.AnomalyRandom.Next(
-                apparatusConfig.minValue.Value,
-                apparatusConfig.maxValue.Value
-            );
+            var minValue = apparatusConfig.minValue.Value;
+            var maxValue = apparatusConfig.maxValue.Value;
+
+            if (minValue < 0 && maxValue < 0)
+            {
+                // Tell it to use the default.
+                return -1;
+            }
+
+            if (minValue < 0)
+            {
+                minValue = 80;
+            }
+
+            if (minValue < 0)
+            {
+                maxValue = 80;
+            }
+
+            if (minValue == maxValue)
+            {
+                // Values are equal, no randomization needed.
+                return minValue;
+            }
+
+            if (minValue > maxValue)
+            {
+                Plugin.Instance.PluginLogger.LogWarning("Apparatus min value is greater than max value. Swapping...");
+
+                var temp = maxValue;
+                minValue = maxValue;
+                maxValue = temp;
+            }
+
+            var scrapValue = RoundManager.Instance.AnomalyRandom.Next(minValue, maxValue);
 
             return scrapValue;
         }
@@ -85,14 +116,25 @@ namespace CevaScrapRebalance
         public static float CalculateApparatusScrapWeight()
         {
             ScrapConfig apparatusConfig = Plugin.Instance.PluginConfig.FetchApparatusConfig();
+
+            if (apparatusConfig.weight.Value < 0)
+            {
+                // Tell it to use the default.
+                return -1;
+            }
+
             return CalculateInternalWeight(apparatusConfig.weight.Value);
+        }
+
+        public static ScrapHandedness CalculateApparatusTwoHanded()
+        {
+            ScrapConfig apparatusConfig = Plugin.Instance.PluginConfig.FetchApparatusConfig();
+            return apparatusConfig.twoHanded.Value;
         }
 
         public static void ApplyApparatusTwoHanded(Item properties)
         {
-            ScrapConfig apparatusConfig = Plugin.Instance.PluginConfig.FetchApparatusConfig();
-
-            switch (apparatusConfig.twoHanded.Value)
+            switch (CalculateApparatusTwoHanded())
             {
                 case ScrapHandedness.OneHanded:
                     DisableItemTwoHanded(properties);
@@ -109,11 +151,16 @@ namespace CevaScrapRebalance
             }
         }
 
-        public static void ApplyApparatusConductive(Item properties)
+        public static ScrapConductivity CalculateApparatusConductive()
         {
             ScrapConfig apparatusConfig = Plugin.Instance.PluginConfig.FetchApparatusConfig();
 
-            switch (apparatusConfig.conductive.Value)
+            return apparatusConfig.conductive.Value;
+        }
+
+        public static void ApplyApparatusConductive(Item properties)
+        {
+            switch (CalculateApparatusConductive())
             {
                 case ScrapConductivity.NonConductive:
                     properties.isConductiveMetal = false;
@@ -128,11 +175,6 @@ namespace CevaScrapRebalance
                     // Skip.
                     break;
             }
-        }
-
-        public static float CalculateScrapInternalWeight()
-        {
-            return CalculateInternalWeight(CalculateApparatusScrapWeight());
         }
 
         public static bool HasScrapConfig(string item)

@@ -10,6 +10,8 @@ REM Copy ../CHANGELOG.md to the current directory
 copy /y ..\CHANGELOG.md .
 REM Copy all files from ../Coroner/build/bin/Debug to the current directory
 xcopy /s /y /q ..\CevaScrapRebalance\build\bin\Debug\* .\
+REM Copy Strings_* files from ../Coroner to the current directory, excluding Strings_test.xml
+xcopy /y /I /F ..\Config\scrap-config.cfg .\BepInEx\config\com.elitemastereric.cevascraprebalance.cfg*
 
 REM Create a zip file named CevaScrapRebalance.zip containing all files (except build.bat and Strings_test.xml) in the current directory
 "C:\Program Files\7-Zip\7z.exe" a -r CevaScrapRebalance.zip * -x!build.bat -x!CevaScrapRebalance.zip

@@ -73,17 +73,11 @@
       <Private>false</Private>
       <HintPath>..\include\UnityEngine.UI.dll</HintPath>
     </Reference>
-  </ItemGroup>
 
-  <ItemGroup>
-    <!--
-      <EmbeddedResource Include="..\Bundles\**\*.*">
-        <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
-      </EmbeddedResource>
-    -->
-    <EmbeddedResource Include="..\Bundles\**\*">
-      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </EmbeddedResource>
+    <Reference Include="Xilophor.StaticNetcodeLib">
+      <Private>false</Private>
+      <HintPath>..\include\Xilophor.StaticNetcodeLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <!-- Fuck you. -->

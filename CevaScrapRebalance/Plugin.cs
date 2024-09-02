@@ -2,6 +2,7 @@
 
 using HarmonyLib;
 using BepInEx.Logging;
+using static BepInEx.BepInDependency;
 
 namespace CevaScrapRebalance
 {
@@ -14,6 +15,7 @@ namespace CevaScrapRebalance
     }
 
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [BepInDependency(StaticNetcodeLib.MyPluginInfo.PLUGIN_GUID, DependencyFlags.HardDependency)]
     public class Plugin : BaseUnityPlugin
     {
         public static Plugin Instance { get; private set; }

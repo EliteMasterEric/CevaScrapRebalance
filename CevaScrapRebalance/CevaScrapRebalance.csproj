@@ -6,7 +6,7 @@
     <Company>EliteMasterEric</Company>
     <AssemblyName>Ceva's Scrap Rebalance</AssemblyName>
     <GUID>com.elitemastereric.cevascraprebalance</GUID>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
 
     <Title>Ceva's Scrap Rebalance</Title>
     <Description>Rebalances scrap properties to be more fair.</Description>

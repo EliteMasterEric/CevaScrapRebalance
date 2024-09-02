@@ -1,6 +1,6 @@
 {
     "name": "CevasScrapRebalance",
-    "version_number": "1.0.0",
+    "version_number": "1.0.1",
     "website_url": "https://github.com/EliteMasterEric/CevaScrapRebalance",
     "description": "Rebalances scrap properties to be more fair.",
     "dependencies": [

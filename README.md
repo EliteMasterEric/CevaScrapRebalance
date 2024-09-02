@@ -1,11 +1,13 @@
 # Ceva's Scrap Rebalance
 
-Rebalances items in the Facility to be more fair or make more sense.
+Rebalances items in the Facility to be more fair or make more sense. All players must have the mod installed and use the same config (if modified) to prevent bugs.
 
 Changes include:
 - Rebalancing of scrap weights.
 - Rebalancing of scrap minimum and maximum values.
 - Rebalancing other properties of scrap (such as conductivity).
+
+You can also change these values yourself in the mod's config.
 
 ## Detailed Change List
 ### Apparatus Changes
@@ -34,7 +36,7 @@ Changes include:
 - Cash Register weight changed from 84 lb to 64 lb.
 - Clock weight changed from 26 lb to 16 lb.
 - Easter Egg weight changed from 3 lb to 0 lb.
-- Flash weight changed from 19 lb to 5 lb.
+- Flask weight changed from 19 lb to 5 lb.
 - Garbage Lid weight changed from 0 lb to 12 lb.
 - Golden Cup weight changed from 16 lb to 24 lb.
 - Jar of Pickles weight changed from 16 lb to 8 lb.
